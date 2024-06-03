@@ -49,3 +49,31 @@ postgis로 보내기
 ### 레이어
 - 대상 테이블: parks
 - 레이어 이름: parks
+
+<br><br>
+
+# Openlayers
+
+## Openlayers 앱 생성
+```shell
+PS D:\webmap03> npm create ol-app incpark
+
+added 31 packages, and audited 32 packages in 3s
+
+6 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+PS D:\webmap03> cd incpark
+PS D:\webmap03\incpark> npm start
+
+> incpark@1.0.0 start
+> vite
+
+
+  VITE v5.2.11  ready in 251 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
