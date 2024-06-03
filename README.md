@@ -46,3 +46,6 @@ postgis로 보내기
   
 ![image](https://github.com/profkim2000/incpark/assets/162937223/a2b92ea0-9630-4928-9bfd-d9c8c2423842)
 
+### 레이어
+- 대상 테이블: parks
+- 레이어 이름: parks
