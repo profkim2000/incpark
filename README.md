@@ -27,7 +27,22 @@ CREATE EXTENSION
 
 
 ## QGIS에서 처리
+csv 파일 가져오기
+
 ![image](https://github.com/profkim2000/incpark/assets/162937223/3cee8446-bc2b-4166-9ea8-5e2f9cbad152)
 
+postgis로 보내기
+
 ![image](https://github.com/profkim2000/incpark/assets/162937223/466e3304-e9fb-4355-8888-4cf4ebfedf6b)
+
+## geoServer
+### 작업공간: incpark
+### 저장소
+- host: 172.30.0.7 (docker 내에서 자기들끼리의 ip)
+- port: 5432
+- database: incpark
+- schema: public
+- user: scott / tiger
+  
+![image](https://github.com/profkim2000/incpark/assets/162937223/a2b92ea0-9630-4928-9bfd-d9c8c2423842)
 
