@@ -112,7 +112,7 @@ const map = new Map({
   target: 'map',
   layers: [osmLayer, wfsLayer],
   view: new View({
-    center: [0, 0],
-    zoom: 2
+    center: [14100008.61632484, 4496815.790027254],
+    zoom: 14
   })
 });
