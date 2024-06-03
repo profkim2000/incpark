@@ -80,3 +80,21 @@ PS D:\webmap03\incpark> npm start
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
 ```
+
+## Openlayers 앱 build
+만약 현재 npm start로 실행 중이면, ctrl + C 를 눌러 중지시키고 아래와 같이 실행
+
+```shell
+Terminate batch job (Y/N)? y
+PS D:\github_profkim2000\incpark2024\source\incpark> npm run build
+
+> incpark@1.0.0 build
+> vite build
+
+vite v5.2.11 building for production...
+✓ 325 modules transformed.
+dist/index.html                   0.66 kB │ gzip:  0.41 kB
+dist/assets/index-ByE2kg69.css    5.49 kB │ gzip:  1.44 kB
+dist/assets/index-B08Ehlbk.js   339.80 kB │ gzip: 98.18 kB │ map: 2,072.76 kB
+✓ built in 2.60s
+PS D:\github_profkim2000\incpark2024\source\incpark>
