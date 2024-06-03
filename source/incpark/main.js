@@ -51,10 +51,51 @@ const wfsSource = new VectorSource
 
 
 // 위에서 wfs로 받아온 벡터 소스를 openLayers의 vector layer에 올린다.
+// 더 잘 보이게 스타일도 고친다.
 const wfsLayer = new VectorLayer
 (
   {
-     source: wfsSource
+    source: wfsSource, 
+    style: new Style
+    (
+       {
+         image: new Circle
+         (
+           {
+             stroke: new Stroke
+             (
+               {
+                 color: 'rgba(0, 0, 255, 1.0)',
+                 width: 3
+               }
+             ),
+             radius: 5, 
+             fill: new Fill
+             (
+               {
+                 color: 'rgba(255, 0, 255, 0.5)'
+               }
+             )
+
+           }
+         ), 
+
+         stroke: new Stroke
+         (
+           {
+             color: 'rgba(0, 0, 255, 1.0)',
+             width: 5
+           }
+         ),
+
+         fill: new Fill
+         (
+           {
+             color: 'rgba(0, 0, 255, 0.5)'
+           }
+         )
+       }
+    ) 
   }
 );
 
