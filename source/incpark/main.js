@@ -17,7 +17,7 @@ import { Fill } from 'ol/style';
 
 // view와의 상호작용을 위해 
 import { Select, defaults } from 'ol/interaction';
-import { pointerMove } from 'ol/events/condition';
+import { pointerMove, click } from 'ol/events/condition';
 
 // 테스트 환경과 실제 tomcat 서버에 올렸을 때의 url이 다르니 g_url 변수를 이용한다.
 const g_url = "http://localhost:42888";
@@ -175,6 +175,55 @@ const mouseHoverSelect = new Select
   }
 );
 
+
+// 마우스가 점을 클릭하면 초록색으로 보여주고 굵게 표시한다.
+const mouseClickSelect = new Select
+(
+  {
+    condition: click,
+    style: new Style
+    (
+      {
+        image: new Circle
+        (
+          {
+            stroke: new Stroke
+            (
+              {
+                color: 'rgba(0, 255, 0, 1.0)',
+                width: 8
+              }
+            ),
+            radius: 10, 
+            fill: new Fill
+            (
+              {
+                color: 'rgba(255, 0, 0, 1.0)'
+              }
+            )
+
+          }
+        ), 
+
+        stroke: new Stroke
+        (
+          {
+            color: 'rgba(0, 0, 255, 1.0)',
+            width: 5
+          }
+        ),
+
+        fill: new Fill
+        (
+          {
+            color: 'rgba(0, 0, 255, 0.5)'
+          }
+        )
+      }
+   )
+  }
+);
+
 const map = new Map({
   target: 'map',
   layers: [osmLayer, wfsLayer],
@@ -182,5 +231,5 @@ const map = new Map({
     center: [14100008.61632484, 4496815.790027254],
     zoom: 14
   }),  
-  interactions: defaults().extend([mouseHoverSelect])
+  interactions: defaults().extend([mouseHoverSelect, mouseClickSelect])
 });
