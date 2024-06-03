@@ -15,6 +15,10 @@ import { Circle } from 'ol/style';
 import { Stroke } from 'ol/style';
 import { Fill } from 'ol/style';
 
+// view와의 상호작용을 위해 
+import { Select, defaults } from 'ol/interaction';
+import { pointerMove } from 'ol/events/condition';
+
 // 테스트 환경과 실제 tomcat 서버에 올렸을 때의 url이 다르니 g_url 변수를 이용한다.
 const g_url = "http://localhost:42888";
 
@@ -25,7 +29,7 @@ function makeFilter()
 {
   let filter = "";
 
-  filter = "name='용담공원'"  // 용담공원을 찾는다.
+  //filter = "name='용담공원'"  // 용담공원을 찾는다.
 
   return filter;
 }
@@ -122,11 +126,61 @@ const osmLayer = new TileLayer
   }
 );
 
+
+// 마우스가 WFS 점 위로 올라갈 때(hover) 처리
+const mouseHoverSelect = new Select
+(
+  {
+    condition: pointerMove,
+    style: new Style
+    (
+      {
+        image: new Circle
+        (
+          {
+            stroke: new Stroke
+            (
+              {
+                color: 'rgba(255, 0, 0, 1.0)',
+                width: 5
+              }
+            ),
+            radius: 8, 
+            fill: new Fill
+            (
+              {
+                color: 'rgba(255, 0, 255, 0.5)'
+              }
+            )
+
+          }
+        ), 
+
+        stroke: new Stroke
+        (
+          {
+            color: 'rgba(0, 0, 255, 1.0)',
+            width: 5
+          }
+        ),
+
+        fill: new Fill
+        (
+          {
+            color: 'rgba(0, 0, 255, 0.5)'
+          }
+        )
+      }
+   )
+  }
+);
+
 const map = new Map({
   target: 'map',
   layers: [osmLayer, wfsLayer],
   view: new View({
     center: [14100008.61632484, 4496815.790027254],
     zoom: 14
-  })
+  }),  
+  interactions: defaults().extend([mouseHoverSelect])
 });
