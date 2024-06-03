@@ -59,7 +59,7 @@ const wfsSource = new VectorSource
 (
   {
     format: new GeoJSON(),
-    url: encodeURI(g_url + "/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=incpark:parks&outputFormat=application/json")
+    url: encodeURI(g_url + "/geoserver/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=incpark:parks&outputFormat=application/json&CQL_FILTER=" + makeFilter() )
   }
 );
 
@@ -124,7 +124,7 @@ const osmLayer = new TileLayer
 
 const map = new Map({
   target: 'map',
-  layers: [osmLayer, wmsLayer],
+  layers: [osmLayer, wfsLayer],
   view: new View({
     center: [14100008.61632484, 4496815.790027254],
     zoom: 14
