@@ -18,6 +18,19 @@ import { Fill } from 'ol/style';
 // 테스트 환경과 실제 tomcat 서버에 올렸을 때의 url이 다르니 g_url 변수를 이용한다.
 const g_url = "http://localhost:42888";
 
+/**
+ * CQL 필터 만들기. 모든 CQL은 이 함수를 통한다.
+ */
+function makeFilter()
+{
+  let filter = "";
+
+  filter = "name='용담공원'"  // 용담공원을 찾는다.
+
+  return filter;
+}
+
+
 // geoserver에서 WMS 방식으로 받아온다.
 const wmsLayer = new TileLayer
 (
@@ -33,7 +46,8 @@ const wmsLayer = new TileLayer
           'VERSION': '1.1.0',
           tiled: true,
           "STYLES": '',
-          "LAYERS": 'incpark:parks'  // geoserver에서 postgreSQL의 orak 테이블과 연결하도록 정의한 레이어.
+          "LAYERS": 'incpark:parks',
+          "CQL_FILTER": makeFilter()
         }
       }
     )
@@ -110,7 +124,7 @@ const osmLayer = new TileLayer
 
 const map = new Map({
   target: 'map',
-  layers: [osmLayer, wfsLayer],
+  layers: [osmLayer, wmsLayer],
   view: new View({
     center: [14100008.61632484, 4496815.790027254],
     zoom: 14
