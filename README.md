@@ -42,9 +42,12 @@ postgis로 보내기
 - port: 5432
 - database: incpark
 - schema: public
-- user: scott / tiger
-  
-![image](https://github.com/profkim2000/incpark/assets/162937223/a2b92ea0-9630-4928-9bfd-d9c8c2423842)
+- user: scott
+- passwd: tiger
+- Expose primary keys에 체크(중요. 이래야 ID를 사용할 수 있다)
+
+![image](https://github.com/profkim2000/incpark/assets/162937223/69ac72e3-369d-413a-8934-6ec8559610dc)
+
 
 ### 레이어
 - 대상 테이블: parks
