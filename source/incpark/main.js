@@ -19,6 +19,9 @@ import { Fill } from 'ol/style';
 import { Select, defaults } from 'ol/interaction';
 import { pointerMove, click } from 'ol/events/condition';
 
+// 팝업창을 위해
+import { Overlay} from 'ol';
+
 // 테스트 환경과 실제 tomcat 서버에 올렸을 때의 url이 다르니 g_url 변수를 이용한다.
 const g_url = "http://localhost:42888";
 
@@ -224,6 +227,13 @@ const mouseClickSelect = new Select
   }
 );
 
+// WFS 점을 클릭하면 보여줄 오버레이를 만든다.
+const popup = document.getElementById('popup');
+const overlayLayer  = new Overlay
+(
+  {element: popup}
+);
+
 const map = new Map({
   target: 'map',
   layers: [osmLayer, wfsLayer],
@@ -231,5 +241,33 @@ const map = new Map({
     center: [14100008.61632484, 4496815.790027254],
     zoom: 14
   }),  
-  interactions: defaults().extend([mouseHoverSelect, mouseClickSelect])
+  interactions: defaults().extend([mouseHoverSelect, mouseClickSelect]),
+  overlays: [overlayLayer]
 });
+
+// 지도 클릭 이벤트 처리. 만약 WFS에서 어느 한 점을 클릭했으면 오버레이(popup) 처리한다.
+map.on('click', (e) =>
+{
+  //console.log(e);
+
+  // 일단 창을 닫는다. 이렇게 하면 자료가 없는 곳을 찍으면 창이 닫히는 효과가 나온다.
+  overlayLayer.setPosition(undefined);
+
+  // 점찍은 곳의 자료를 찾아낸다. geoserver에서는 WFS를 위해 위치 정보 뿐 아니라 메타데이터도 같이 보내고 있다.
+  map.forEachFeatureAtPixel(e.pixel, (feature, layer) =>
+  {
+    // 이 point와 같이 넘어온 메타데이터 값을 찾는다.
+    
+    let parkID = feature.get('id');
+    let park_name = feature.get('name');
+    let park_address = feature.get('address');
+
+    // 메티데이터를 오버레이를 위한 div에 적는다.
+    document.getElementById("park_name").innerHTML = parkID + ". " + park_name;
+    document.getElementById("park_address").innerHTML = park_address;
+
+    // 오버레이 창을 띄운다.
+    overlayLayer.setPosition(e.coordinate);
+  })
+}
+);
