@@ -42,9 +42,12 @@ postgis로 보내기
 - port: 5432
 - database: incpark
 - schema: public
-- user: scott / tiger
-  
-![image](https://github.com/profkim2000/incpark/assets/162937223/a2b92ea0-9630-4928-9bfd-d9c8c2423842)
+- user: scott
+- passwd: tiger
+- Expose primary keys에 체크(중요. 이래야 ID를 사용할 수 있다)
+
+![image](https://github.com/profkim2000/incpark/assets/162937223/69ac72e3-369d-413a-8934-6ec8559610dc)
+
 
 ### 레이어
 - 대상 테이블: parks
@@ -77,3 +80,27 @@ PS D:\webmap03\incpark> npm start
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
 ```
+
+## detail.jsp 파일로 링크걸기
+
+## Openlayers 앱 build
+만약 현재 npm start로 실행 중이면, ctrl + C 를 눌러 중지시키고 아래와 같이 실행
+
+```shell
+Terminate batch job (Y/N)? y
+PS D:\github_profkim2000\incpark2024\source\incpark> npm run build
+
+> incpark@1.0.0 build
+> vite build
+
+vite v5.2.11 building for production...
+✓ 325 modules transformed.
+dist/index.html                   0.66 kB │ gzip:  0.41 kB
+dist/assets/index-ByE2kg69.css    5.49 kB │ gzip:  1.44 kB
+dist/assets/index-B08Ehlbk.js   339.80 kB │ gzip: 98.18 kB │ map: 2,072.76 kB
+✓ built in 2.60s
+PS D:\github_profkim2000\incpark2024\source\incpark>
+```
+
+# JSP
+## JSP에서 상세 화면보여주기(detail.jsp)
