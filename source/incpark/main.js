@@ -263,6 +263,7 @@ map.on('click', (e) =>
     let park_address = feature.get('address');
 
     // 메티데이터를 오버레이를 위한 div에 적는다.
+    document.getElementById("link").href = "detail.jsp?id=" + parkID;
     document.getElementById("park_name").innerHTML = parkID + ". " + park_name;
     document.getElementById("park_address").innerHTML = park_address;
 
